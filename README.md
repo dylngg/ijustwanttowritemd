@@ -7,7 +7,7 @@ Write markdown. Then publish. Why do static site generators have to be so compli
 1. Write your markdown file.
 2. Publish. `./publish.sh source.md dest.html`
 
-See `examples/` for some examples.
+See `examples/` for an example. You can view it published [here](https://dylngg.github.io/ijustwanttowritemd/examples/catipsum/).
 
 ## Styling
 
