@@ -11,7 +11,7 @@ See `examples/` for an example. You can view it published [here](https://dylngg.
 
 ## Styling
 
-The `header.html` and `footer.html` files in the source.md directory are just prepended and appended to the markdown html. You can change the styling of the resulting html by adding css and html to those files. See the `examples/` folder.
+The `header.html` and `footer.html` files in the source.md directory (if exists) or the current directory are just prepended and appended to the markdown html. You can change the styling of the resulting html by adding css and html to those files. See the `examples/` folder.
 
 ## Adding Metadata
 
