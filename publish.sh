@@ -35,7 +35,7 @@ if [ ! -z "$meta_filepath" ]; then
     id="`echo $line | cut -d '=' -f 1`"
     value="`echo $line | cut -d '=' -f 2`"
     # Replace $id with value
-    sed -i '' -E 's,\$'"$id"','"$value"',g' $html_filepath
+    sed -i '' -E 's|\$'"$id"'|'"$value"'|g' $html_filepath
   done < $meta_filepath
 fi
 
