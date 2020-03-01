@@ -24,6 +24,10 @@ Default directory setup:
             index.html (after ./publish.sh page-name)
             header.html (optional, overrides ../header.html)
             footer.html (optional, overrides ../footer.html)
+
+        page2-name/
+            ...
+
         header.html
         footer.html
 EOF
@@ -36,7 +40,6 @@ die() {
 }
 
 pagedir="$1"
-parent_pagedir="`dirname $pagedir`"
 if [ "$pagedir" == "" ]; then
     die "No page directory given"
 elif [ "$pagedir" == "--help" ] || [ "$pagedir" == "-h" ]; then
@@ -46,6 +49,8 @@ elif [[ $pagedir == -* ]]; then
 elif [ ! -d "$pagedir" ]; then
     die "Page directory '$pagedir' is not a directory"
 fi
+shift
+parent_pagedir="`dirname $pagedir`"
 
 # A bit ugly, but needed for portable way to get short and long options
 while getopts "hd:-:" "arg"; do
@@ -83,12 +88,13 @@ html_filepath="$pagedir/index.html"
 if [ ! -f $header_filepath ]; then
     header_filepath="$parent_pagedir/header.html"
     if [ ! -f $header_filepath ]; then
-        die "'header.html' not found in $pagedir"
+        die "'header.html' not found in either $pagedir or $parent_pagedir"
     fi
-elif [ ! -f $footer_filepath ]; then
+fi
+if [ ! -f $footer_filepath ]; then
     footer_filepath="$parent_pagedir/footer.html"
     if [ ! -f $footer_filepath ]; then
-        die "'footer.html' not found in $pagedir"
+        die "'footer.html' not found in either $pagedir or $parent_pagedir"
     fi
 fi
 
