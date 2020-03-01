@@ -4,8 +4,8 @@ Write markdown. Then publish. Why do static site generators have to be so compli
 
 ## How?
 
-1. Write your markdown page in a same named directory (`name/name.md`).
-2. Publish. `./publish.sh name`
+1. Write your markdown page in a same named directory (`name/page-name.md`).
+2. Publish. `./publish.sh page-name`
 
 See `examples/` for an example. You can view it published [here](https://dylngg.github.io/ijustwanttowritemd/examples/catipsum/).
 
