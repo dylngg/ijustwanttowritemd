@@ -103,7 +103,7 @@ cat $header_filepath > $html_filepath
 cat $footer_filepath >> $html_filepath
 
 meta_filepath="$pagedir/$pagename.meta"
-if [ ! -f "$md_filepath" ]; then
+if [ ! -f "$meta_filepath" ]; then
     exit 0
 fi
 
