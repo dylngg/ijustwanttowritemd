@@ -6,13 +6,16 @@ print_help() {
 usage: feed.sh <web-dir>
 
 Updates a Atom 1.0 feed.xml in the given directory (by default the current
-directory). The site data is pulled from feed.meta, which contains key-value
-pairs (key=value) and the entry data is generated from the sub-directories. If
-.meta files are found in those subdirectories, that metadata is added to the
-corresponding entry.
+directory). The global site data is pulled from feed.meta in the given
+directory, which should contain key-value pairs (key=value). The entries
+themselves are generated from sub-directories that contain their own
+subdir.meta files.
 
-The site data must contain a link key-value pair used as the base url
+The global site data must contain a link key-value pair used as the base url
 (e.g. link=https://planet.kernel.org/), as well as a title key-value pair.
+Futhermore, sub-directory .meta files should contain at least a 'title'
+key-value pair, as well any Atom 1.0 properties besides 'updated' and 'id'
+such as 'author' and 'summary'.
 
 Web directory setup:
     Things should look like this in the web directory:
@@ -100,21 +103,23 @@ for entry_dir in $webdir/*; do
     if [ ! -d "$entry_dir" ]; then
         continue
     fi
-    echo "$pad<entry>" >> $feed
 
     entry_name="`basename $entry_dir`"
     entry_meta="$entry_dir/$entry_name.meta"
-    has_title=false
-    if [ -f "$entry_meta" ]; then
-        while read line; do
-            id="`echo $line | cut -d '=' -f 1 | tr '[:upper:]' '[:lower:]'`"
-            value="`echo $line | cut -d '=' -f 2-`"
-            if [ "$id" = "title" ]; then
-                has_title=true
-            fi
-            echo "$pad2<$id>$value</$id>" >> $feed
-        done < "$entry_meta"
+    if [ ! -f "$entry_meta" ]; then
+        continue
     fi
+
+    echo "$pad<entry>" >> $feed
+    has_title=false
+    while read line; do
+        id="`echo $line | cut -d '=' -f 1 | tr '[:upper:]' '[:lower:]'`"
+        value="`echo $line | cut -d '=' -f 2-`"
+        if [ "$id" = "title" ]; then
+            has_title=true
+        fi
+        echo "$pad2<$id>$value</$id>" >> $feed
+    done < "$entry_meta"
 
     if ! $has_title; then
         echo "$pad2<title>$entry_name</title>" >> $feed
