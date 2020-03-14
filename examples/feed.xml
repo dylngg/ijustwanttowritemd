@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <generator uri="https://github.com/dylngg/ijustwanttowritemd">ijustwanttowritemd</generator>
+  <title>ijustwanttowritemd Examples</title>
+  <author>
+    <name>Dylan Gardner</name>
+  </author>
+  <subtitle>Write markdown. Then publish. Why do static site generators have to be so complicated?</subtitle>
+  <id>https://github.com/dylngg/ijustwanttowritemd/examples/feed.xml</id>
+  <link rel="self" href="https://github.com/dylngg/ijustwanttowritemd/examples/feed.xml"/>
+  <link rel="alternative" href="https://github.com/dylngg/ijustwanttowritemd/examples"/>
+  <language>en-us</language>
+  <updated>2020-03-14T03:27:46Z</updated>
+  <entry>
+    <title>A example "ijustwanttowritemd" page with catipsum</title>
+    <author>Some Cat</author>
+    <id>https://github.com/dylngg/ijustwanttowritemd/examples/catipsum</id>
+    <link rel="alternative" href="https://github.com/dylngg/ijustwanttowritemd/examples/catipsum"/>
+    <updated>2020-03-01T23:42:08Z</updated>
+  </entry>
+</feed>
